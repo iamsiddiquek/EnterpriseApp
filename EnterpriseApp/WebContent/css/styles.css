@@ -3,7 +3,7 @@
 	#top {
 		position:fixed;
 		vertical-align: top;
-		background-color:#13654a;
+		background-color:#f4f4f4;
 		height:3em;
 		width:100%;
 		z-index:100;
@@ -14,11 +14,11 @@
 	
 	#left {
 		position:fixed;
-		left: 4px;
+		left: 0px;
 		top: 3em;
 		width:145px;	
 		height:100%;
-		background-color:#d6bd91;
+		background-color:#f6f6f6;
 		padding-left:1.5em;
 	}
 		
