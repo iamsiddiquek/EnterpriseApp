@@ -18,11 +18,13 @@ public interface IPlantService {
 	 */
 	public List<Plant> filterPlants(String filter);
 
+
 	/**
 	 * Save the plant and perform a validation check.
 	 * @param plant the plant we are persisting
 	 * @throws Exception if unable to save
 	 */
+	public void save(Plant plant) throws Exception;
 
 
 	/**

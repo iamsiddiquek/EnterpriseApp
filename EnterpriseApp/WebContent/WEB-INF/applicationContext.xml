@@ -12,7 +12,9 @@
 	<property name="brokerURL" value="tcp://localhost:61616" />
 </bean>
  -->
-<!-- 	<bean id="PlantHbmDAO" name="plantDAO" class="com.plantplaces.dao.PlantHbmDAO"/> -->
+
+	<!-- which is coming first will overtake the next one.  -->
+	<bean id="PlantHbmDAO" name="plantDAO" class="com.plantplaces.dao.PlantHbmDAO" />
 
 	<!-- This will make available of objects which will be belongs to this package or sub package -->
 	<context:component-scan base-package="com.plantplaces" />

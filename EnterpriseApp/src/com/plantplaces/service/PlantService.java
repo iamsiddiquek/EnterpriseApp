@@ -21,7 +21,6 @@ public class PlantService implements IPlantService {
 	
 	@Override
 	public List<Plant> filterPlants(String filter) {
-		
 		if (allPlants == null ) {
 			allPlants = getPlantDAO().fetchPlants();
 		}
@@ -39,8 +38,15 @@ public class PlantService implements IPlantService {
 			}
 		}
 		
-		// TODO Auto-generated method stub
 		return returnPlants;
+	}
+	
+	@Override
+	public void save(Plant plant) throws Exception {
+		if(!plant.getGenus().equals(null) || !plant.getGenus().isEmpty()) {
+			plantDAO.insert(plant);
+		}else
+			throw new Exception("Genius is required.");
 	}
 	
 	

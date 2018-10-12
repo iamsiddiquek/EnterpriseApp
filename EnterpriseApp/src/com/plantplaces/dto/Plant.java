@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.faces.bean.ManagedBean;
 import javax.inject.Named;
+import javax.persistence.Table;
 
 import org.springframework.context.annotation.Scope;
 
@@ -11,6 +12,7 @@ import org.springframework.context.annotation.Scope;
 @Named
 @ManagedBean
 @Scope("session")
+@Table(name="plants", catalog="enterpriseapp")
 public class Plant implements Serializable {
 	
 	private static final long serialVersionUID = 25756422266802005L;
@@ -19,6 +21,7 @@ public class Plant implements Serializable {
 	private String species;
 	private String cultivar;
 	private String common;
+	private int guid;
 	
 	
 	//############### START toString method ##################
@@ -70,6 +73,14 @@ public class Plant implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public int getGuid() {
+		return guid;
+	}
+
+	public void setGuid(int guid) {
+		this.guid = guid;
 	}
 	
 	//############### END SETTER AND GETTER methodS ##################	

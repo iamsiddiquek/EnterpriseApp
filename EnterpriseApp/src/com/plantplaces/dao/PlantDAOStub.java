@@ -7,7 +7,7 @@ import javax.inject.Named;
 
 import com.plantplaces.dto.Plant;
 
-@Named("plantDAO")
+
 public class PlantDAOStub implements IPlantDAO {
 	
 
@@ -71,7 +71,6 @@ public class PlantDAOStub implements IPlantDAO {
 
 	@Override
 	public void insert(Plant plant) throws Exception {
-		// TODO Auto-generated method stub
 		
 	}
 
