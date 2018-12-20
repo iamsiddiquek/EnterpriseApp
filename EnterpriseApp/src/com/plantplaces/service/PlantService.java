@@ -9,15 +9,21 @@ import javax.inject.Named;
 import com.plantplaces.dao.IPlantDAO;
 import com.plantplaces.dto.Plant;
 
-
-
 @Named
 public class PlantService implements IPlantService {
 
+//###################### START INJECTS, DECLARATIONS, ##################################
+	
 	@Inject
 	private	IPlantDAO plantDAO;
 		
 	private List<Plant> allPlants;
+	
+	
+//###################### END INJECTS, DECLARATIONS, ##################################
+	
+	
+	
 	
 	@Override
 	public List<Plant> filterPlants(String filter) {
@@ -26,7 +32,7 @@ public class PlantService implements IPlantService {
 		}
 		
 		// the collection we are returning.
-		List<Plant> returnPlants = new ArrayList<Plant>();
+		List<Plant> returnPlants = new ArrayList<>();
 
 		// filter the list.
 		// interview all possible plants (allPlants), and move plants that contain the filter text into our subset collection (returnPlans)
@@ -40,7 +46,8 @@ public class PlantService implements IPlantService {
 		
 		return returnPlants;
 	}
-	
+
+
 	@Override
 	public void save(Plant plant) throws Exception {
 		if(!plant.getGenus().equals(null) || !plant.getGenus().isEmpty()) {
@@ -49,9 +56,34 @@ public class PlantService implements IPlantService {
 			throw new Exception("Genius is required.");
 	}
 	
+	/**
+	 * return list of plants that matches the search criteria
+	 * parameter have search criteria
+	 * returns list of matching result.
+	 */
+	@Override
+	public List<Plant> fetchPlants(Plant plant){
+		List<Plant> plants = plantDAO.fetchPlants(plant);
+		
+		return plants;
+	}
+
 	
+	@Override
+	public Plant fetchPlant(int guid) {
+		return plantDAO.fetchPlant(guid);
+	}
 
 
+
+	
+	
+	
+	
+	
+	
+	
+	// ########################## GETTER AND SETTERS #####################################
 	public IPlantDAO getPlantDAO() {
 		return plantDAO;
 	}
@@ -59,5 +91,4 @@ public class PlantService implements IPlantService {
 	public void setPlantDAO(IPlantDAO plantDAO) {
 		this.plantDAO = plantDAO;
 	}
-
 }

@@ -3,15 +3,13 @@ package com.plantplaces.dao;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.inject.Named;
-
 import com.plantplaces.dto.Plant;
 
 
-public class PlantDAOStub implements IPlantDAO {
+public class PlantDAOStub {
 	
 
-	@Override
+
 	public List<Plant> fetchPlants() {
 		// TODO Auto-generated method stub
 		List<Plant> allPlants = new ArrayList<Plant>();
@@ -52,13 +50,13 @@ public class PlantDAOStub implements IPlantDAO {
 
 	}
 
-	@Override
+
 	public void update(Plant plant) throws Exception {
 		// TODO Auto-generated method stub
 
 	}
 
-	@Override
+
 	public void delete(Plant plant) throws Exception {
 		// TODO Auto-generated method stub
 
@@ -69,7 +67,6 @@ public class PlantDAOStub implements IPlantDAO {
 	}
 
 
-	@Override
 	public void insert(Plant plant) throws Exception {
 		
 	}

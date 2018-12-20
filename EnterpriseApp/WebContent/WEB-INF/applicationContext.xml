@@ -6,25 +6,11 @@
 	http://www.springframework.org/schema/context
 	http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 
-<!--
- <bean id="jmsConnectionFactory"
-	class="org.apache.activemq.ActiveMQConnectionFactory">
-	<property name="brokerURL" value="tcp://localhost:61616" />
-</bean>
- -->
 
-	<!-- which is coming first will overtake the next one.  -->
+	<!-- which is coming first will overtake the second one or has high priority.  -->
 	<bean id="PlantHbmDAO" name="plantDAO" class="com.plantplaces.dao.PlantHbmDAO" />
 
 	<!-- This will make available of objects which will be belongs to this package or sub package -->
 	<context:component-scan base-package="com.plantplaces" />
 	
-<!--
- 	<bean name="plantServiceExporter"
-        class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
-        <property name="service" ref="plantService" />
-        <property name="serviceInterface" value="com.plantplaces.service.IPlantService" />
-   	</bean>
- -->
-
 </beans>

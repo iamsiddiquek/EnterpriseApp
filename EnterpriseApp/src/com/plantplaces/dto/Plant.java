@@ -24,16 +24,14 @@ public class Plant implements Serializable {
 	private int guid;
 	
 	
-	//############### START toString method ##################
-
+//############### START toString method ##################
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
 		return genus + "  " + species + " " + cultivar + " " + common;
 	}
-	
-	// ############# END toString method ######################
-	//############### START SETTER AND GETTER methodS ##################	
+// ############# END toString method ######################
+//############### START SETTER AND GETTER methodS ##################	
 	
 	public String getGenus() {
 		return genus;
@@ -83,6 +81,6 @@ public class Plant implements Serializable {
 		this.guid = guid;
 	}
 	
-	//############### END SETTER AND GETTER methodS ##################	
+//############### END SETTER AND GETTER methodS ##################	
 
 }

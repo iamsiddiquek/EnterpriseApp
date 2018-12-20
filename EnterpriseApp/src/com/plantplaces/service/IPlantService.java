@@ -27,6 +27,12 @@ public interface IPlantService {
 	public void save(Plant plant) throws Exception;
 
 
+	List<Plant> fetchPlants(Plant plant);
+
+
+	public Plant fetchPlant(int guid);
+
+
 	/**
 	 *  Return a list of plants that match the given search criteria
 	 * @param plant a parameter that contains the search criteria
