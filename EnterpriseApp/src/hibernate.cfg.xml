@@ -26,6 +26,8 @@
 
 		<!--  classes mapping for tables  -->
         <mapping resource="com/plantplaces/dto/Plant.hbm.xml"></mapping>
+        <mapping resource="com/plantplaces/dto/Specimen.hbm.xml"></mapping>
+        
 
     </session-factory>
 </hibernate-configuration>

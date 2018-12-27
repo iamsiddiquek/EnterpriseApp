@@ -14,7 +14,7 @@ import com.plantplaces.dto.Plant;
 
 @SuppressWarnings("unchecked")
 @Named("plantDAO")
-public class PlantHbmDAO implements IPlantDAO {
+public class PlantHbmDAO implements IPlantDao {
 
 	@Override
 	public List<Plant> fetchPlants() {
@@ -22,12 +22,7 @@ public class PlantHbmDAO implements IPlantDAO {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Query query = session.createQuery("from Plant");
 		List<Plant> list = new ArrayList<Plant>();
-		list = query.list();
-		
-		for (Plant plant : list) {
-			System.out.println("plantHbmDao \nPlant: "+plant);
-		}
-		
+		list = query.list();		
 		return list;
 	}
 	
@@ -90,7 +85,6 @@ public class PlantHbmDAO implements IPlantDAO {
 		
 
 	}
-
 
 
 

@@ -7,7 +7,7 @@ import java.util.List;
 
 import org.junit.Test;
 
-import com.plantplaces.dao.IPlantDAO;
+import com.plantplaces.dao.IPlantDao;
 import com.plantplaces.dto.Plant;
 import com.plantplaces.service.PlantService;
 
@@ -17,7 +17,7 @@ public class TestPlantService extends TestCase {
 	
 	private PlantService plantService;
 	private List<Plant> filterPlants;
-	private IPlantDAO plantDAO;
+	private IPlantDao plantDAO;
 
 	@Test
 	public void testFilterPlants() {		
@@ -43,7 +43,7 @@ public class TestPlantService extends TestCase {
 	private void givenThatPlantServiceIsPopulatedWithPlantDAO() {
 		plantService = new PlantService();
 		
-		plantDAO = mock(IPlantDAO.class);
+		plantDAO = mock(IPlantDao.class);
 		// a known set of hardcoded plants.
 		List<Plant> plantList = constructPlantList();
 		// tell the mock object to return our known set of hardcoded plants, when requested.

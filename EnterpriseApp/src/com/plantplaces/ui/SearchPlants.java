@@ -19,7 +19,7 @@ import com.plantplaces.service.IPlantService;
 
 @Named
 @ManagedBean
-@Scope("session")
+@Scope("request")
 public class SearchPlants implements Serializable {
 
 	private static final long serialVersionUID = 1401883819418520422L;
@@ -60,7 +60,8 @@ public class SearchPlants implements Serializable {
 
     public void onRowSelect(SelectEvent event) throws IOException {
         FacesMessage msg = new FacesMessage("Selected", "Information of plant");
-        FacesContext.getCurrentInstance().addMessage(null, msg);
+        FacesContext.getCurrentInstance().addMessage("searchGrowl", msg);
+        this.plant.setCommon(null);
         Plant plant = ((Plant) event.getObject());       
         specimenVo.setPlant(plant);        
         FacesContext.getCurrentInstance().getExternalContext().redirect("specimen.xhtml");

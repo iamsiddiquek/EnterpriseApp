@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.plantplaces.dto.Plant;
 
-public interface IPlantDAO {
+public interface IPlantDao {
 	
 	public List<Plant> fetchPlants();
 	

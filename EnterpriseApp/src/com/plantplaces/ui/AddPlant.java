@@ -17,28 +17,23 @@ import com.plantplaces.service.IPlantService;
 public class AddPlant {
 
 	@Inject
-	private
-	Plant plant;
+	private	Plant plant;
 	
 	@Inject
-	private
-	IPlantService plantService;
+	private	IPlantService plantService;
 
 	
-	public String execute() {
-		String returnValue = "success";
-		
-		try {
+	public String execute() {				
+		try { 
 			plantService.save(plant);
 			//blow the growl when this executes success.
 			FacesContext.getCurrentInstance().addMessage("addPlant", new FacesMessage(FacesMessage.SEVERITY_INFO, "Saved", "Plant Saved"));
-			
+			return "specimen.xhtml?faces-redirect=true";
 		} catch (Exception e) {
 			e.printStackTrace();
 			FacesContext.getCurrentInstance().addMessage("addPlant", new FacesMessage(FacesMessage.SEVERITY_ERROR,  "Error", "Could not save the Plant"));
-			returnValue = "fail";
+			return "noresults.xhtml?faces-redirect=true";
 		}		
-		return returnValue;
 	}
 	
 	

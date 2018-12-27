@@ -11,34 +11,22 @@
 		<ui:define name="top">Plant Places Adding Plants information</ui:define>
 		<ui:define name="content">
 		<h1>Welcome to PlantPlaces.com!</h1>
-
 			<h:form>
 				<table>
-
 					<p:growl id="addPlant" showDetail="true" sticky="false" />
-
-					<tr>
-						<td><h:outputLabel value="Genus" /></td>
+					<tr><td><h:outputLabel value="Genus" /></td>
 						<td><p:inputText value="#{plant.genus}" /></td>
 					</tr>
-					<tr>
-						<td><h:outputLabel value="Species" /></td>
+					<tr><td><h:outputLabel value="Species" /></td>
 						<td><p:inputText value="#{plant.species}" /></td>
 					</tr>
-					<tr>
-						<td><h:outputLabel value="Cultivar" /></td>
+					<tr><td><h:outputLabel value="Cultivar" /></td>
 						<td><p:inputText value="#{plant.cultivar}" /></td>
 					</tr>
-					<tr>
-						<td><h:outputLabel value="Common Name" /></td>
-						<td><p:inputText value="#{plant.common}" /></td>
-					</tr>
+					<tr><td><h:outputLabel value="Common Name" /></td>
+						<td><p:inputText value="#{plant.common}" /></td></tr>
 				</table>
-
-				<p:commandButton value="Submit" actionListener="#{addPlant.execute}"
-					update="addPlant" />
-				<br />
-
+				<p:commandButton value="Submit" action="#{addPlant.execute}" update="addPlant" /><br />
 			</h:form>
 
 			<h:link value="Contact Us" outcome="contactUs" />

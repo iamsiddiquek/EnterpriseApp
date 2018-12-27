@@ -3,17 +3,20 @@ package com.plantplaces.dto;
 import java.io.Serializable;
 
 import javax.inject.Named;
+import javax.persistence.Table;
 
 @Named
+@Table(name="specimen", catalog="enterpriseapp")
 public class Specimen implements Serializable {
 
 	private static final long serialVersionUID = 3150528394882066247L;
-	private Integer id = 0;
-	private Integer plantId = 0;
-	private Double longitude = 0D;
-	private Double latitude  = 0D;
-	private String plantedBy = null;
-	private String plantedDate = null;
+	private Integer id;
+	private Integer plantId;
+	private String longitude;
+	private String latitude;
+	private String plantedBy;
+	private String plantedDate;
+	private String description;
 	
 
 	
@@ -33,16 +36,16 @@ public class Specimen implements Serializable {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public Double getLongitude() {
+	public String getLongitude() {
 		return longitude;
 	}
-	public void setLongitude(Double longitude) {
+	public void setLongitude(String longitude) {
 		this.longitude = longitude;
 	}
-	public Double getLatitude() {
+	public String getLatitude() {
 		return latitude;
 	}
-	public void setLatitude(Double latitude) {
+	public void setLatitude(String latitude) {
 		this.latitude = latitude;
 	}
 	public String getPlantedBy() {
@@ -62,6 +65,14 @@ public class Specimen implements Serializable {
 	}
 	public void setPlantId(Integer plantId) {
 		this.plantId = plantId;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 }

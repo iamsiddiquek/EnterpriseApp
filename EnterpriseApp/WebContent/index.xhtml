@@ -15,26 +15,11 @@
 
 Enter a plant name, and then choose Search.
 		<h:form>
+			<p:growl id="searchGrowl" showDetail="true" sticky="false" />
 			<p:autoComplete value="#{plant.common}"	completeMethod="#{searchPlants.completePlants}" />
-			<p:commandButton value="Submit" action="#{searchPlants.execute}" />
+			<p:commandButton value="Submit" action="#{searchPlants.execute}" update="searchGrowl" />
 		</h:form>
 			<h4>The National Virtual Arboretum and Regional Ornamental Plant Database is 
-		a collaborative effort of numerous regional and national horticulture 
-		professionals and organizations. Plants on this database have been selected for 
-		their excellent performance and years of service. Promoting diversity in the 
-		landscape gives gardeners, landscapers and plant propagators / nurserymen the 
-		opportunity to expand with a wider variety and selection of outstanding plants 
-		and helps to alleviate monotonous monocultures both aesthetically and 
-		disease-wise.</h4>
-		<h4>The National Virtual Arboretum and Regional Ornamental Plant Database is 
-		a collaborative effort of numerous regional and national horticulture 
-		professionals and organizations. Plants on this database have been selected for 
-		their excellent performance and years of service. Promoting diversity in the 
-		landscape gives gardeners, landscapers and plant propagators / nurserymen the 
-		opportunity to expand with a wider variety and selection of outstanding plants 
-		and helps to alleviate monotonous monocultures both aesthetically and 
-		disease-wise.</h4>
-		<h4>The National Virtual Arboretum and Regional Ornamental Plant Database is 
 		a collaborative effort of numerous regional and national horticulture 
 		professionals and organizations. Plants on this database have been selected for 
 		their excellent performance and years of service. Promoting diversity in the 

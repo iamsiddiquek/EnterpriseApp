@@ -10,8 +10,9 @@
 	<ui:define name="title">PlantPlaces.com: Specimen</ui:define>
 	<ui:define name="top">PlantPlaces.com: Specimen</ui:define>
 	<ui:define name="content">
-		<h1>Welcome to PlantPlaces.com!</h1>
-		<em><h:outputLabel value="#{specimenVo.plant.common}" /></em>
+		<h1>Welcome to PlantPlaces.com!!!</h1>
+		
+		<em><h:outputLabel value="You are adding: #{specimenVo.plant.common}" /></em>
 
 			<h:form>
 				<table>
@@ -24,8 +25,10 @@
 						<td><p:inputText value="#{specimenVo.specimen.plantedBy}" /></td></tr>
 					<tr><td><h:outputLabel value="Planted On" /></td>
 						<td><p:inputText value="#{specimenVo.specimen.plantedDate}" /></td></tr>
+					<tr><td><h:outputLabel value="Description" /></td>
+						<td><p:inputText value="#{specimenVo.specimen.description}" /></td></tr>
 				</table>
-				<p:commandButton value="Submit" actionListener="#{specimenVo.save}" update="specimenGrowl" />
+				<p:commandButton value="Submit" action="#{specimenVo.save}" update="specimenGrowl" />
 			</h:form>
 
 

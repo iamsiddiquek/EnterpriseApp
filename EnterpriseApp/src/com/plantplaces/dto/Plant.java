@@ -2,16 +2,11 @@ package com.plantplaces.dto;
 
 import java.io.Serializable;
 
-import javax.faces.bean.ManagedBean;
 import javax.inject.Named;
 import javax.persistence.Table;
 
-import org.springframework.context.annotation.Scope;
-
 
 @Named
-@ManagedBean
-@Scope("session")
 @Table(name="plants", catalog="enterpriseapp")
 public class Plant implements Serializable {
 	
@@ -21,14 +16,14 @@ public class Plant implements Serializable {
 	private String species;
 	private String cultivar;
 	private String common;
-	private int guid;
+	private Integer guid;
 	
 	
 //############### START toString method ##################
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return genus + "  " + species + " " + cultivar + " " + common;
+		return "Plant [name=" + name + ", genus=" + genus + ", species=" + species + ", cultivar=" + cultivar
+				+ ", common=" + common + ", guid=" + guid + "]";
 	}
 // ############# END toString method ######################
 //############### START SETTER AND GETTER methodS ##################	
@@ -73,14 +68,15 @@ public class Plant implements Serializable {
 		this.name = name;
 	}
 
-	public int getGuid() {
+	public Integer getGuid() {
 		return guid;
 	}
 
-	public void setGuid(int guid) {
+	public void setGuid(Integer guid) {
 		this.guid = guid;
 	}
+
+
 	
 //############### END SETTER AND GETTER methodS ##################	
-
 }

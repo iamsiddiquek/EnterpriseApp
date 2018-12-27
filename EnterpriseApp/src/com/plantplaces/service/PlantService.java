@@ -6,7 +6,7 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import com.plantplaces.dao.IPlantDAO;
+import com.plantplaces.dao.IPlantDao;
 import com.plantplaces.dto.Plant;
 
 @Named
@@ -15,10 +15,9 @@ public class PlantService implements IPlantService {
 //###################### START INJECTS, DECLARATIONS, ##################################
 	
 	@Inject
-	private	IPlantDAO plantDAO;
+	private	IPlantDao plantDAO;
 		
 	private List<Plant> allPlants;
-	
 	
 //###################### END INJECTS, DECLARATIONS, ##################################
 	
@@ -84,11 +83,12 @@ public class PlantService implements IPlantService {
 	
 	
 	// ########################## GETTER AND SETTERS #####################################
-	public IPlantDAO getPlantDAO() {
+	public IPlantDao getPlantDAO() {
 		return plantDAO;
 	}
 
-	public void setPlantDAO(IPlantDAO plantDAO) {
+	public void setPlantDAO(IPlantDao plantDAO) {
 		this.plantDAO = plantDAO;
 	}
+
 }

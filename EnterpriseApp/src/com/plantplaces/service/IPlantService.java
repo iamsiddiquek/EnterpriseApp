@@ -27,7 +27,7 @@ public interface IPlantService {
 	public void save(Plant plant) throws Exception;
 
 
-	List<Plant> fetchPlants(Plant plant);
+	public List<Plant> fetchPlants(Plant plant);
 
 
 	public Plant fetchPlant(int guid);

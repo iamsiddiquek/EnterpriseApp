@@ -1,6 +1,8 @@
 package com.plantplaces.ui;
 
 import javax.annotation.ManagedBean;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -8,6 +10,7 @@ import org.springframework.context.annotation.Scope;
 
 import com.plantplaces.dto.Plant;
 import com.plantplaces.dto.Specimen;
+import com.plantplaces.service.ISpecimenService;
 
 @Named
 @ManagedBean
@@ -16,17 +19,19 @@ public class SpecimenVo {
 	
 	@Inject
 	private Plant plant; 
+	
+	@Inject
+	private ISpecimenService specimenService;
+	
 	@Inject
 	private Specimen specimen;
 	
-	
-	
-	
-	
-	
 	public void save() {
-		System.out.println(plant);
-		System.out.println(specimen);
+		specimen.setPlantId(plant.getGuid());
+		if(specimen != null) {			
+			specimenService.addSpecimen(specimen);
+		}
+		FacesContext.getCurrentInstance().addMessage("addSpecimen", new FacesMessage(FacesMessage.SEVERITY_INFO, "Saved", "Plant Specimen Saved"));
 	}
 	
 	
@@ -34,7 +39,8 @@ public class SpecimenVo {
 	
 	
 	
-	
+
+//############### START SETTER AND GETTER methodS ##################	
 	
 	public Plant getPlant() {
 		return plant;
@@ -51,5 +57,14 @@ public class SpecimenVo {
 	public void setSpecimen(Specimen specimen) {
 		this.specimen = specimen;
 	}
-	
+
+	public ISpecimenService getSpecimenService() {
+		return specimenService;
+	}
+
+	public void setSpecimenService(ISpecimenService specimenService) {
+		this.specimenService = specimenService;
+	}
+
+//############### END SETTER AND GETTER methodS ##################	
 }
