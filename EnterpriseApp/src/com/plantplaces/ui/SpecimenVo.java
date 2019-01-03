@@ -1,8 +1,8 @@
 package com.plantplaces.ui;
 
+import java.io.Serializable;
+
 import javax.annotation.ManagedBean;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -10,28 +10,40 @@ import org.springframework.context.annotation.Scope;
 
 import com.plantplaces.dto.Plant;
 import com.plantplaces.dto.Specimen;
+import com.plantplaces.service.IPlantService;
 import com.plantplaces.service.ISpecimenService;
 
 @Named
 @ManagedBean
-@Scope("request")
-public class SpecimenVo {
-	
+@Scope("session")
+public class SpecimenVo implements Serializable {
+
+	private static final long serialVersionUID = -1867171764912985264L;
 	@Inject
 	private Plant plant; 
-	
+	@Inject
+	private IPlantService plantService;
 	@Inject
 	private ISpecimenService specimenService;
-	
 	@Inject
 	private Specimen specimen;
 	
-	public void save() {
+	public String save() {
 		specimen.setPlantId(plant.getGuid());
-		if(specimen != null) {			
-			specimenService.addSpecimen(specimen);
+		System.out.println("Plant In specimenVO: "+plant);
+
+		try {
+			plantService.save(specimen);
+			return "specimenSaved";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "specimenFailed";
 		}
-		FacesContext.getCurrentInstance().addMessage("addSpecimen", new FacesMessage(FacesMessage.SEVERITY_INFO, "Saved", "Plant Specimen Saved"));
+  		
+//		if(specimen != null) {
+//			specimenService.addSpecimen(specimen);
+//		}
+//		FacesContext.getCurrentInstance().addMessage("addSpecimen", new FacesMessage(FacesMessage.SEVERITY_INFO, "Saved", "Plant Specimen Saved"));
 	}
 	
 	
@@ -64,6 +76,26 @@ public class SpecimenVo {
 
 	public void setSpecimenService(ISpecimenService specimenService) {
 		this.specimenService = specimenService;
+	}
+
+
+
+
+
+
+
+	public IPlantService getPlantService() {
+		return plantService;
+	}
+
+
+
+
+
+
+
+	public void setPlantService(IPlantService plantService) {
+		this.plantService = plantService;
 	}
 
 //############### END SETTER AND GETTER methodS ##################	

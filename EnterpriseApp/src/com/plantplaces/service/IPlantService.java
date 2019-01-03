@@ -3,6 +3,7 @@ package com.plantplaces.service;
 import java.util.List;
 
 import com.plantplaces.dto.Plant;
+import com.plantplaces.dto.Specimen;
 
 /**
  * IPlantService includes all business related functions for a Plant and related entities
@@ -31,6 +32,9 @@ public interface IPlantService {
 
 
 	public Plant fetchPlant(int guid);
+
+
+	void save(Specimen specimen) throws Exception;
 
 
 	/**

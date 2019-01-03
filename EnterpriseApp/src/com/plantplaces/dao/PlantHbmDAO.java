@@ -49,11 +49,8 @@ public class PlantHbmDAO implements IPlantDao {
 	public Plant fetchPlant(int guid) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Query query = session.createQuery("from Plant where guid = :guid ");
-
 		query.setParameter("guid", guid);
-		System.out.println("before getting . . .PlantHMDAO ");
 		Plant plant = (Plant) query.uniqueResult();
-		System.out.println("after getting . . .PlantHMDAO ");
 
 		return plant;
 	}

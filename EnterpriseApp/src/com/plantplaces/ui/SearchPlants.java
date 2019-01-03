@@ -19,7 +19,7 @@ import com.plantplaces.service.IPlantService;
 
 @Named
 @ManagedBean
-@Scope("request")
+@Scope("session")
 public class SearchPlants implements Serializable {
 
 	private static final long serialVersionUID = 1401883819418520422L;
@@ -33,9 +33,6 @@ public class SearchPlants implements Serializable {
 	private SpecimenVo specimenVo;
 
 	private List<Plant> plants;
-	
-	private Plant selectedPlant;
-	
 	
 //###################### END INJECTS, DECLARATIONS, ##################################	
 	/**
@@ -61,12 +58,13 @@ public class SearchPlants implements Serializable {
     public void onRowSelect(SelectEvent event) throws IOException {
         FacesMessage msg = new FacesMessage("Selected", "Information of plant");
         FacesContext.getCurrentInstance().addMessage("searchGrowl", msg);
-        this.plant.setCommon(null);
-        Plant plant = ((Plant) event.getObject());       
-        specimenVo.setPlant(plant);        
+//        this.plant.setCommon(null);
+        Plant selectedPlant = ((Plant) event.getObject()); 
+        System.out.println("\nSearchPlant ->  SpecimenVo.setPlant -> getObject:: "+selectedPlant);
+        specimenVo.setPlant(selectedPlant);
         FacesContext.getCurrentInstance().getExternalContext().redirect("specimen.xhtml");
     }
-	
+
 	
 	
 	
@@ -87,14 +85,6 @@ public class SearchPlants implements Serializable {
 
 	public void setPlant(Plant plant) {
 		this.plant = plant;
-	}
-
-	public Plant getSelectedPlant() {
-		return selectedPlant;
-	}
-
-	public void setSelectedPlant(Plant selectedPlant) {
-		this.selectedPlant = selectedPlant;
 	}
 
 	public SpecimenVo getSpecimenVo() {
