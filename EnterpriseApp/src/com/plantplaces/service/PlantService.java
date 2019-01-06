@@ -84,6 +84,13 @@ public class PlantService implements IPlantService {
 		specimenDao.addSpecimen(specimen);
 	}
 
+	@Override
+	public void loadSpecimens(Plant plant) {
+		List<Specimen>specimens = specimenDao.specimensByPlantId(plant.getGuid());
+		plant.setSpecimens(specimens);
+		
+	}
+	
 	
 	
 	// ########################## GETTER AND SETTERS #####################################
@@ -102,6 +109,5 @@ public class PlantService implements IPlantService {
 	public void setSpecimenDao(ISpecimenDao specimenDao) {
 		this.specimenDao = specimenDao;
 	}
-
 
 }

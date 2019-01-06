@@ -38,6 +38,13 @@ public interface IPlantService {
 
 
 	/**
+	 * Loads specimens by plant
+	 * @param plant 
+	 */
+	public void loadSpecimens(Plant plant);
+
+
+	/**
 	 *  Return a list of plants that match the given search criteria
 	 * @param plant a parameter that contains the search criteria
 	 * @return a list of matching plants

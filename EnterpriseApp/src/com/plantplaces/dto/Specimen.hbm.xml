@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name="com.plantplaces.dto.Specimen" table="specimen" catalog="enterpriseApp">
+    <class name="com.plantplaces.dto.Specimen" table="specimens" catalog="enterpriseApp">
  
         <id name="id" type="java.lang.Integer">
             <column name="SPECIMEN_ID" />

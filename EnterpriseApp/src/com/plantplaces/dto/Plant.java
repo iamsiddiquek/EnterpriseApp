@@ -1,6 +1,7 @@
 package com.plantplaces.dto;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.inject.Named;
 import javax.persistence.Table;
@@ -17,7 +18,8 @@ public class Plant implements Serializable {
 	private String cultivar;
 	private String common;
 	private Integer guid;
-	
+
+	private List<Specimen> specimens;
 	
 //############### START toString method ##################
 	@Override
@@ -74,6 +76,14 @@ public class Plant implements Serializable {
 
 	public void setGuid(Integer guid) {
 		this.guid = guid;
+	}
+
+	public List<Specimen> getSpecimens() {
+		return specimens;
+	}
+
+	public void setSpecimens(List<Specimen> specimens) {
+		this.specimens = specimens;
 	}
 
 

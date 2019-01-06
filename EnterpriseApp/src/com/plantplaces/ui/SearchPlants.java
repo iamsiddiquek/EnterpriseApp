@@ -40,9 +40,7 @@ public class SearchPlants implements Serializable {
 	 * @return the next navigation.
 	 */
 	public String execute() {
-		
 		plants = plantService.fetchPlants(plant);
-		
 		if (plants.size() > 0){
 			return "success";
 		} else {

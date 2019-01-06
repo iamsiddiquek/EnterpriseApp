@@ -6,7 +6,7 @@ import javax.inject.Named;
 import javax.persistence.Table;
 
 @Named
-@Table(name="specimen", catalog="enterpriseapp")
+@Table(name="specimens", catalog="enterpriseapp")
 public class Specimen implements Serializable {
 
 	private static final long serialVersionUID = 3150528394882066247L;

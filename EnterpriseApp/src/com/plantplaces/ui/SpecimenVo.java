@@ -1,11 +1,17 @@
 package com.plantplaces.ui;
 
+import java.io.IOException;
 import java.io.Serializable;
 
 import javax.annotation.ManagedBean;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.primefaces.event.FileUploadEvent;
+import org.primefaces.event.SelectEvent;
+import org.primefaces.model.UploadedFile;
 import org.springframework.context.annotation.Scope;
 
 import com.plantplaces.dto.Plant;
@@ -27,6 +33,11 @@ public class SpecimenVo implements Serializable {
 	private ISpecimenService specimenService;
 	@Inject
 	private Specimen specimen;
+
+    private UploadedFile file;
+
+	
+	
 	
 	public String save() {
 		specimen.setPlantId(plant.getGuid());
@@ -46,7 +57,35 @@ public class SpecimenVo implements Serializable {
 //		FacesContext.getCurrentInstance().addMessage("addSpecimen", new FacesMessage(FacesMessage.SEVERITY_INFO, "Saved", "Plant Specimen Saved"));
 	}
 	
-	
+
+
+	private void loadSpecimens() {
+		plantService.loadSpecimens(plant);
+	}
+
+
+    public void onRowSelect(SelectEvent event) throws IOException {
+        FacesMessage msg = new FacesMessage("Selected", "Information of plant");
+        FacesContext.getCurrentInstance().addMessage("searchGrowl", msg);
+        Specimen specimen = ((Specimen) event.getObject()); 
+        setSpecimen(specimen);
+    }
+
+    
+     
+    public void upload() {
+        if(file != null) {
+            FacesMessage message = new FacesMessage("Succesful", file.getFileName() + " is uploaded.");
+            FacesContext.getCurrentInstance().addMessage(null, message);
+        }
+    }
+     
+    public void handleFileUpload(FileUploadEvent event) {
+        FacesMessage msg = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
+    
+    
 	
 	
 	
@@ -60,6 +99,7 @@ public class SpecimenVo implements Serializable {
 
 	public void setPlant(Plant plant) {
 		this.plant = plant;
+		loadSpecimens();
 	}
 
 	public Specimen getSpecimen() {
@@ -78,21 +118,17 @@ public class SpecimenVo implements Serializable {
 		this.specimenService = specimenService;
 	}
 
+	public UploadedFile getFile() {
+		return file;
+	}
 
-
-
-
-
+	public void setFile(UploadedFile file) {
+		this.file = file;
+	}
 
 	public IPlantService getPlantService() {
 		return plantService;
 	}
-
-
-
-
-
-
 
 	public void setPlantService(IPlantService plantService) {
 		this.plantService = plantService;

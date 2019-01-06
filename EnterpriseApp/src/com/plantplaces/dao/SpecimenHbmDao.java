@@ -1,5 +1,8 @@
 package com.plantplaces.dao;
 
+import java.util.Collections;
+import java.util.List;
+
 import javax.inject.Named;
 
 import org.hibernate.Query;
@@ -24,12 +27,17 @@ public class SpecimenHbmDao implements ISpecimenDao {
 	}
 
 	
-	
-	public void fetchByPlantId(int plantId) {
-		Session session = HibernateUtil.getSessionFactory().openSession();
 
+	
+	@Override
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public List<Specimen> specimensByPlantId(int plantId) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
 		Query query = session.createQuery("from Specimen where plantId = :plantId");
 		query.setParameter("plantId", plantId);
+		List list = query.list();
+		List<Specimen> specimens = Collections.checkedList(list, Specimen.class);
+		return specimens;
 	}
 	
 	

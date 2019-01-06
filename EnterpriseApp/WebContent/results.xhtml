@@ -19,28 +19,12 @@
 	<p:growl id="msgs" showDetail="true" sticky="false"  />
 	<p:dataTable id="showPlants" var="plantResult" value="#{searchPlants.plants}" selectionMode="single"  rowKey="#{plantResult.guid}">
 		<p:ajax event="rowSelect" listener="#{searchPlants.onRowSelect}" update="@form:msgs"  />
-		<p:column headerText="ID">
-			<h:outputText value="#{plantResult.guid}"/>
-		</p:column>
-		<p:column headerText="Genus">
-			<h:outputText value="#{plantResult.genus}"/>
-		</p:column>
-		<p:column headerText="Species">
-			<h:outputText value="#{plantResult.species}"/>
-		</p:column>
-		<p:column headerText="Common">
-			<h:outputText value="#{plantResult.common}"/>
-		</p:column>
-<ui:remove>
-		<f:facet name="footer">
-			<p:commandButton process="showPlants" value="View" action="#{searchPlants.showDetails}"/>
-		</f:facet>
-</ui:remove>
-
+		<p:column headerText="ID"> <h:outputText value="#{plantResult.guid}"/> </p:column>
+		<p:column headerText="Genus"> <h:outputText value="#{plantResult.genus}"/> </p:column>
+		<p:column headerText="Species"> <h:outputText value="#{plantResult.species}"/> </p:column>
+		<p:column headerText="Common"> <h:outputText value="#{plantResult.common}"/> </p:column>
 	</p:dataTable>
 </h:form>
-
-
 
 	<h:form>
 		<h:inputText value="#{plant.name}" />

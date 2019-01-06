@@ -11,9 +11,21 @@
 	<ui:define name="top">PlantPlaces.com: Specimen</ui:define>
 	<ui:define name="content">
 		<h1>Welcome to PlantPlaces.com!!!</h1>
-		
-		<em><h:outputLabel value="You are adding: #{specimenVo.plant.common}" /></em>
 
+		<p:dataTable id="showSpecimens" var="specimenResult" value="#{specimenVo.plant.specimens}" selectionMode="single" rowKey="#{specimenResult.id}">
+			<p:ajax event="rowSelect" listener="#{specimenVo.onRowSelect}"  />
+			
+			<p:column headerText="ID"> <h:outputLabel value="#{specimenResult.id}" /> </p:column>
+			<p:column headerText="Longitude"> <h:outputLabel value="#{specimenResult.longitude}" /> </p:column>
+			<p:column headerText="Latitude"> <h:outputLabel value="#{specimenResult.latitude}" /> </p:column>
+			<p:column headerText="Planted By"> <h:outputLabel value="#{specimenResult.plantedBy}" /> </p:column>
+			<p:column headerText="Planted Date"> <h:outputLabel value="#{specimenResult.plantedDate}" /> </p:column>
+			<p:column headerText="Description"> <h:outputLabel value="#{specimenResult.description}" /> </p:column>
+			
+		</p:dataTable>
+
+
+			<em><h:outputLabel value="You are adding: #{specimenVo.plant.common}" /></em>
 			<h:form class="inputData">
 				<table>
 					<p:growl id="specimenGrowl" showDetail="true" sticky="false" />
@@ -32,9 +44,21 @@
 			</h:form>
 
 
+		    <br /> <br />		    <br /> <br />
+		    		
+		<h:form enctype="multipart/form-data">
+		    <p:growl id="messages" showDetail="true" sticky="false" />		     
+		    <p:fileUpload value="#{specimenVo.file}" mode="simple" skinSimple="true"/>
+		    <br /> <br />
+		    <p:commandButton value="Submit" ajax="false" action="#{specimenVo.upload}"  />
+		</h:form>
+
+
+
+
+
 		<h:link value="Contact Us" outcome="contactUs" />
 		</ui:define>
 	</ui:composition>
 </h:body>
-
 </html>
