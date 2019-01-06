@@ -1,6 +1,7 @@
 package com.plantplaces.ui;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
 
 import javax.annotation.ManagedBean;
@@ -14,6 +15,7 @@ import org.primefaces.event.SelectEvent;
 import org.primefaces.model.UploadedFile;
 import org.springframework.context.annotation.Scope;
 
+import com.plantplaces.dto.Photo;
 import com.plantplaces.dto.Plant;
 import com.plantplaces.dto.Specimen;
 import com.plantplaces.service.IPlantService;
@@ -75,8 +77,18 @@ public class SpecimenVo implements Serializable {
      
     public void upload() {
         if(file != null) {
-            FacesMessage message = new FacesMessage("Succesful", file.getFileName() + " is uploaded.");
-            FacesContext.getCurrentInstance().addMessage(null, message);
+        	Photo photo = new Photo();
+        	InputStream inputStream;
+			try {
+				inputStream = file.getInputstream();
+	        	plantService.savePhoto(photo, inputStream);
+				FacesMessage message = new FacesMessage("Succesful", file.getFileName() + " is uploaded.");
+				FacesContext.getCurrentInstance().addMessage(null, message);		 
+			} catch (IOException e) {
+				e.printStackTrace();
+	            FacesMessage message = new FacesMessage("UnSuccesful", file.getFileName() + " could not upload.");
+	            FacesContext.getCurrentInstance().addMessage(null, message);
+			}
         }
     }
      

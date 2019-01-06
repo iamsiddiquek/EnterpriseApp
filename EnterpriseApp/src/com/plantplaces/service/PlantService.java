@@ -1,13 +1,18 @@
 package com.plantplaces.service;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import com.plantplaces.dao.IFileDao;
 import com.plantplaces.dao.IPlantDao;
 import com.plantplaces.dao.ISpecimenDao;
+import com.plantplaces.dto.Photo;
 import com.plantplaces.dto.Plant;
 import com.plantplaces.dto.Specimen;
 
@@ -17,15 +22,19 @@ public class PlantService implements IPlantService {
 //###################### START INJECTS, DECLARATIONS, ##################################
 	
 	@Inject
-	private	IPlantDao plantDAO;
-		
-	private List<Plant> allPlants;
-	
+	private	IPlantDao plantDAO;		
 	@Inject
 	private ISpecimenDao specimenDao;
+	@Inject
+	private IFileDao fileDao;
 	
 //###################### END INJECTS, DECLARATIONS, ##################################
+//###################### START list declarations, ##################################
 	
+	private List<Plant> allPlants;
+
+	
+//###################### END list declarations, ##################################
 	
 	
 	
@@ -88,12 +97,21 @@ public class PlantService implements IPlantService {
 	public void loadSpecimens(Plant plant) {
 		List<Specimen>specimens = specimenDao.specimensByPlantId(plant.getGuid());
 		plant.setSpecimens(specimens);
+	}
+
+	@Override
+	public void savePhoto(Photo photo, InputStream inputStream) throws IOException {
+		
+		File destination = new File("D:\\images");
+		File file = new File(destination, "image.jpg");
+		
+		fileDao.save(inputStream, file);
 		
 	}
 	
 	
 	
-	// ########################## GETTER AND SETTERS #####################################
+// ########################## GETTER AND SETTERS #####################################
 	public IPlantDao getPlantDAO() {
 		return plantDAO;
 	}
@@ -108,6 +126,16 @@ public class PlantService implements IPlantService {
 
 	public void setSpecimenDao(ISpecimenDao specimenDao) {
 		this.specimenDao = specimenDao;
+	}
+
+
+	public IFileDao getFileDao() {
+		return fileDao;
+	}
+
+
+	public void setFileDao(IFileDao fileDao) {
+		this.fileDao = fileDao;
 	}
 
 }
