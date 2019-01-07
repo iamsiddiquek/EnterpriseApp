@@ -3,13 +3,14 @@ package com.plantplaces.service;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import com.plantplaces.dao.IFileDao;
 import com.plantplaces.dao.IPlantDao;
 import com.plantplaces.dao.ISpecimenDao;
 import com.plantplaces.dto.Photo;
@@ -101,16 +102,24 @@ public class PlantService implements IPlantService {
 
 	@Override
 	public void savePhoto(Photo photo, InputStream inputStream) throws IOException {
-		
 		File destination = new File("D:\\images");
-		File file = new File(destination, "image.jpg");
-		
-		fileDao.save(inputStream, file);
-		
+		File file = new File(destination, getUniqueImageName());
+		fileDao.savePhoto(inputStream, file);
+		photo.setUri(getUniqueImageName());
 	}
 	
 	
 	
+	
+	private String getUniqueImageName() {
+		String imagePrefix = "plantPlaces";
+		String imageSuffix = ".jpg";
+		String middle = "";
+		SimpleDateFormat sdf = new SimpleDateFormat("yyMMddHHmmss");
+		middle = sdf.format(new Date());
+		return imagePrefix + middle + imageSuffix;
+	}
+
 // ########################## GETTER AND SETTERS #####################################
 	public IPlantDao getPlantDAO() {
 		return plantDAO;

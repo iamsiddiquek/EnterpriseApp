@@ -35,6 +35,9 @@ public class SpecimenVo implements Serializable {
 	private ISpecimenService specimenService;
 	@Inject
 	private Specimen specimen;
+	@Inject
+	private
+	Photo photo;
 
     private UploadedFile file;
 
@@ -76,17 +79,21 @@ public class SpecimenVo implements Serializable {
     
      
     public void upload() {
-        if(file != null) {
-        	Photo photo = new Photo();
+    	if( specimen.getId() == 0) {
+			FacesMessage message = new FacesMessage("Please Select Specimen before uploading Image");
+			FacesContext.getCurrentInstance().addMessage(null, message);		 
+    	}
+    	else if(file != null) {
         	InputStream inputStream;
 			try {
+				photo.setSpecimenId(specimen.getId());
 				inputStream = file.getInputstream();
 	        	plantService.savePhoto(photo, inputStream);
 				FacesMessage message = new FacesMessage("Succesful", file.getFileName() + " is uploaded.");
 				FacesContext.getCurrentInstance().addMessage(null, message);		 
 			} catch (IOException e) {
 				e.printStackTrace();
-	            FacesMessage message = new FacesMessage("UnSuccesful", file.getFileName() + " could not upload.");
+	            FacesMessage message = new FacesMessage("Un-Succesful", file.getFileName() + " cannot upload.");
 	            FacesContext.getCurrentInstance().addMessage(null, message);
 			}
         }
@@ -144,6 +151,14 @@ public class SpecimenVo implements Serializable {
 
 	public void setPlantService(IPlantService plantService) {
 		this.plantService = plantService;
+	}
+
+	public Photo getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(Photo photo) {
+		this.photo = photo;
 	}
 
 //############### END SETTER AND GETTER methodS ##################	
