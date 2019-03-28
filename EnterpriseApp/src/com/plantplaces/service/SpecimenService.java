@@ -1,12 +1,9 @@
 package com.plantplaces.service;
 
-import java.io.InputStream;
-
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.plantplaces.dao.ISpecimenDao;
-import com.plantplaces.dto.Photo;
 import com.plantplaces.dto.Specimen;
 
 @Named
@@ -16,17 +13,10 @@ public class SpecimenService implements ISpecimenService {
 	private ISpecimenDao specimenDao;
 	
 	
-	
-
 	@Override
-	public void addSpecimen(Specimen specimen) {
-		specimenDao.addSpecimen(specimen);
+	public void save(Specimen specimen) throws Exception {
+		specimenDao.save(specimen);
 	}
-
-	
-
-
-
 
 	public ISpecimenDao getSpecimenDao() {
 		return specimenDao;

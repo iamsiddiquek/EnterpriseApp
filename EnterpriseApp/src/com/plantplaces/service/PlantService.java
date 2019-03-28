@@ -11,6 +11,7 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import com.plantplaces.dao.IPhotoDao;
 import com.plantplaces.dao.IPlantDao;
 import com.plantplaces.dao.ISpecimenDao;
 import com.plantplaces.dto.Photo;
@@ -28,6 +29,8 @@ public class PlantService implements IPlantService {
 	private ISpecimenDao specimenDao;
 	@Inject
 	private IFileDao fileDao;
+	@Inject
+	private IPhotoDao photoDao;
 	
 //###################### END INJECTS, DECLARATIONS, ##################################
 //###################### START list declarations, ##################################
@@ -65,7 +68,7 @@ public class PlantService implements IPlantService {
 	@Override
 	public void save(Plant plant) throws Exception {
 		if(!plant.getGenus().equals(null) || !plant.getGenus().isEmpty()) {
-			plantDAO.insert(plant);
+			plantDAO.save(plant);
 		}else
 			throw new Exception("Genius is required.");
 	}
@@ -91,7 +94,7 @@ public class PlantService implements IPlantService {
 
 	@Override
 	public void save(Specimen specimen)throws Exception{
-		specimenDao.addSpecimen(specimen);
+		specimenDao.save(specimen);
 	}
 
 	@Override
@@ -145,6 +148,16 @@ public class PlantService implements IPlantService {
 
 	public void setFileDao(IFileDao fileDao) {
 		this.fileDao = fileDao;
+	}
+
+
+	public IPhotoDao getPhotoDao() {
+		return photoDao;
+	}
+
+
+	public void setPhotoDao(IPhotoDao photoDao) {
+		this.photoDao = photoDao;
 	}
 
 }

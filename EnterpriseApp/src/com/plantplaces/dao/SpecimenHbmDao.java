@@ -11,19 +11,15 @@ import org.hibernate.Session;
 import com.plantplaces.dto.Specimen;
 
 @Named
-public class SpecimenHbmDao implements ISpecimenDao {
+public class SpecimenHbmDao extends PlantPlacesDao<Specimen> implements ISpecimenDao {
 	
 	/* (non-Javadoc)
 	 * @see com.plantplaces.dao.ISpecimen#addSpecimen(com.plantplaces.dto.Specimen)
 	 */
 	@Override
-	public void addSpecimen(Specimen specimen) {
+	public void insert(Session session, Specimen specimen) {
 		// Save the entity to the database. . . 
-		Session session = HibernateUtil.getSessionFactory().openSession();
-		session.beginTransaction();
 		session.save(specimen);
-		session.getTransaction().commit();
-		session.flush();
 	}
 
 	

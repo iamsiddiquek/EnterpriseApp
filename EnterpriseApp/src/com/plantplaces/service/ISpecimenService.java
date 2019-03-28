@@ -4,6 +4,6 @@ import com.plantplaces.dto.Specimen;
 
 public interface ISpecimenService {
 
-	public void addSpecimen(Specimen specimen);
+	public void save(Specimen specimen) throws Exception;
 
 }

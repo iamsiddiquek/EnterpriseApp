@@ -14,7 +14,7 @@ import com.plantplaces.dto.Plant;
 
 @SuppressWarnings("unchecked")
 @Named("plantDAO")
-public class PlantHbmDAO implements IPlantDao {
+public class PlantHbmDAO extends PlantPlacesDao<Plant> implements IPlantDao {
 
 	@Override
 	public List<Plant> fetchPlants() {
@@ -31,17 +31,13 @@ public class PlantHbmDAO implements IPlantDao {
 	public List<Plant> fetchPlants(Plant plant){
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Query query = session.createQuery("from Plant where common like :common ");
-		
-// setProperties is bit more dynamic it will check the :common or another name which is write as param reference and 
-// hibernate will checks either it is available in the class like in my situation setProperties uses PLANT class.
-// query.setProperties(plant);
-
+		// setProperties is bit more dynamic it will check the :common or another name which is write as param reference and 
+		// hibernate will checks either it is available in the class like in my situation setProperties uses PLANT class.
+		// query.setProperties(plant);
 		query.setParameter("common", "%"+plant.getCommon()+"%");
-
 		@SuppressWarnings("rawtypes")
 		List list = query.list();
 		List<Plant> plants = Collections.checkedList(list, Plant.class);
-			
 		return plants;
 	}
 	
@@ -57,13 +53,9 @@ public class PlantHbmDAO implements IPlantDao {
 	
 
 	@Override
-	public void insert(Plant plant) throws Exception {
+	public void insert(Session session, Plant plant) throws Exception {
 		// Save the entity to the database. . . 
-		Session session = HibernateUtil.getSessionFactory().openSession();
-		session.beginTransaction();
 		session.save(plant);
-		session.getTransaction().commit();
-		session.flush();
 	}
 
 	@Override
